@@ -8,15 +8,21 @@
 public class Alquiler
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private int numeroDias;
+    private Cliente cliente;
+    private Barco barco;
+    private final static int VALOR_FIJO_ALQUILER = 300;
+    private final static int MULTIPLICADOR_ESLORA = 10;
 
     /**
      * Constructor for objects of class Alquiler
      */
-    public Alquiler()
+    public Alquiler(int dias, Cliente clien, Barco bar)
     {
         // initialise instance variables
-        x = 0;
+        numeroDias = dias;
+        cliente = clien;
+        barco = bar;
     }
 
     /**
@@ -25,9 +31,13 @@ public class Alquiler
      * @param  y   a sample parameter for a method
      * @return     the sum of x and y 
      */
-    public int sampleMethod(int y)
+    
+    public float getCosteAlquiler()
     {
         // put your code here
-        return x + y;
+        return numeroDias*(barco.getEslora()*10)+300*barco.getCoeficienteBernua();
+    }
+    public String toString(){
+        return "Numero de Dias: "+numeroDias+"/n Precio de Alquiler: "+getCosteAlquiler();
     }
 }
