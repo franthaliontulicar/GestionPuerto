@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Puerto()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Puerto\r\n
+comment1.params=numeroDias\ clien\ bar
+comment1.target=int\ addAlquiler(int,\ Cliente,\ Barco)
+comment1.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ \r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \r\n
+comment2.params=
+comment2.target=void\ verEstadoAmarre()
+comment3.params=posicion
+comment3.target=float\ liquidarAlquiler(int)
+numComments=4
