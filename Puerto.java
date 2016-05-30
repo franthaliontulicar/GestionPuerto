@@ -17,7 +17,7 @@ public class Puerto
     public Puerto()
     {
         // initialise instance variables
-         alquileres = new Alquiler[NUMERO_AMARRES];
+        alquileres = new Alquiler[NUMERO_AMARRES];
     }
 
     /**
@@ -26,32 +26,50 @@ public class Puerto
      * @param  y   a sample parameter for a method
      * @return     the sum of x and y 
      */
-    public int addAlquiler(int numeroDias, Cliente clien, Barco bar)
+    public int addAlquiler(int numeroDias, Cliente cliente, Barco barco)
+    {   
+        int posicionEnLaQueQuedaElBarco = -1;
+        int contador = 0;
+        while(contador<alquileres.length && posicionEnLaQueQuedaElBarco==-1) {
+            if(alquileres[contador]==null){
+                posicionEnLaQueQuedaElBarco = contador;
+                alquileres[contador] = new Alquiler(numeroDias,cliente,barco);
+            }
+            contador++;
+        }
+        return posicionEnLaQueQuedaElBarco;
+    }
+
+    /**
+     * Show state of port
+     */
+    public void verEstadoAmarres()
     {
-        // put your code here
-         boolean creado = false;
-        int posicion = -1;
-        int i = 0;
-        while(posicion < NUMERO_AMARRES && !creado){
-            if(alquileres[i] == null){
-                alquileres[i] = new Alquiler(numeroDias, clien, bar);
-                posicion = i;
-                creado = true;
+        for(int i = 0;i <alquileres.length;i++) {
+            System.out.println("Amarre nº" + i);
+            if(alquileres[i] == null) {
+                System.out.println("Libre");
             }
-            i++;
-        }
-        return posicion;
-    }
-    public void verEstadoAmarre(){
-        for(int i = 0; i < NUMERO_AMARRES; i++){
-            if(alquileres[i] == null){
+            else{
+                System.out.println("ocupado");
                 System.out.println(alquileres[i]);
-            }
+            }      
         }
     }
-    public float liquidarAlquiler(int posicion){
-        Alquiler alquiler = alquileres[posicion];
-        alquileres[posicion] = null;
-        return alquiler.getCosteAlquiler();
+
+    /**
+     * Liberate moorage. Returns -1 if posicion is not valid
+     */
+    public float liquidarAlquiler(int posicion)
+    {
+        float valor = -1;
+        if(posicion < NUMERO_AMARRES && posicion >= 0){
+            if(alquileres[posicion] != null){
+                valor = alquileres[posicion].getCosteAlquiler();
+                alquileres[posicion] = null;
+            }
+        }
+        return valor;
     }
+
 }
