@@ -29,7 +29,7 @@ public class Yate extends EmbarcacionDeportiva
     public int getCoeficienteBernua()
     {
         // put your code here
-        return getCoeficienteBernua() + camarotes;
+        return super.getCoeficienteBernua() + camarotes;
     }
     
     public String toString(){
