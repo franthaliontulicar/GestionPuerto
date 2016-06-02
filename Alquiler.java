@@ -11,6 +11,7 @@ public class Alquiler
     private int numeroDias;
     private Cliente cliente;
     private Barco barco;
+    int posicion;
     private final static int VALOR_FIJO_ALQUILER = 300;
     private final static int MULTIPLICADOR_ESLORA = 10;
 
@@ -23,6 +24,7 @@ public class Alquiler
         numeroDias = dias;
         cliente = clien;
         barco = bar;
+        posicion = 0;
     }
 
     /**
@@ -37,6 +39,11 @@ public class Alquiler
         // put your code here
         return numeroDias*(barco.getEslora()*10)+300*barco.getCoeficienteBernua();
     }
+    
+    public int getPosicion(){
+        return posicion;
+    }
+    
     public String toString(){
         return "Numero de Dias: "+numeroDias+"/n Precio de Alquiler: "+getCosteAlquiler();
     }

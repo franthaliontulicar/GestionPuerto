@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Puerto
 {
     // instance variables - replace the example below with your own
-    private  Alquiler[] alquileres;
+    private  ArrayList<Alquiler> alquileres;
     private final static int NUMERO_AMARRES = 4;
 
     /**
@@ -17,7 +17,7 @@ public class Puerto
     public Puerto()
     {
         // initialise instance variables
-        alquileres = new Alquiler[NUMERO_AMARRES];
+        alquileres = new ArrayList<Alquiler>();
     }
 
     /**
@@ -30,14 +30,42 @@ public class Puerto
     {   
         int posicionEnLaQueQuedaElBarco = -1;
         int contador = 0;
-        while(contador<alquileres.length && posicionEnLaQueQuedaElBarco==-1) {
-            if(alquileres[contador]==null){
+        while(contador < alquileres.size() && posicionEnLaQueQuedaElBarco==-1) {
+            if(alquileres.size() < NUMERO_AMARRES){
                 posicionEnLaQueQuedaElBarco = contador;
-                alquileres[contador] = new Alquiler(numeroDias,cliente,barco);
+                Alquiler alquiler = new Alquiler(numeroDias,cliente,barco);
+                alquileres.add(alquiler);
             }
             contador++;
         }
         return posicionEnLaQueQuedaElBarco;
+    }
+
+    public int buscaPosicionLibre(){
+        int posicionLibre = 0;
+        int index = 0;
+        int posicion = 0;
+        boolean encontrada = false;
+        boolean encontrado = false;
+        if(alquileres.size() != 0){
+            while(index <= NUMERO_AMARRES && !encontrado){
+                while(posicion <= alquileres.size() && !encontrada){
+                    if(index == alquileres.get(posicion).getPosicion()){
+                        encontrado = true;
+                    }
+                    else{
+                        posicion++;
+                    }                   
+                    
+                }
+                if(!encontrado){
+                    posicionLibre = index;
+                }
+                index++;
+                
+            }
+        }
+        return posicionLibre;
     }
 
     /**
@@ -45,15 +73,16 @@ public class Puerto
      */
     public void verEstadoAmarres()
     {
-        for(int i = 0;i <alquileres.length;i++) {
-            System.out.println("Amarre nº" + i);
-            if(alquileres[i] == null) {
-                System.out.println("Libre");
-            }
-            else{
-                System.out.println("ocupado");
-                System.out.println(alquileres[i]);
-            }      
+        boolean alquilado = false;
+        for(Alquiler alquiler: alquileres) {
+            if(alquiler != null) {
+                System.out.println(alquiler);
+                alquilado = true;
+            }             
+        }
+
+        if(!alquilado){
+            System.out.println("No se realiza alquiler");
         }
     }
 
@@ -64,9 +93,9 @@ public class Puerto
     {
         float valor = -1;
         if(posicion < NUMERO_AMARRES && posicion >= 0){
-            if(alquileres[posicion] != null){
-                valor = alquileres[posicion].getCosteAlquiler();
-                alquileres[posicion] = null;
+            if(alquileres != null){
+                valor = alquileres.get(posicion).getCosteAlquiler();
+                alquileres.remove(posicion);
             }
         }
         return valor;
