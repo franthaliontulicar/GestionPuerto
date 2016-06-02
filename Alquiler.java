@@ -11,7 +11,7 @@ public class Alquiler
     private int numeroDias;
     private Cliente cliente;
     private Barco barco;
-    int posicion;
+    private int posicion;
     private final static int VALOR_FIJO_ALQUILER = 300;
     private final static int MULTIPLICADOR_ESLORA = 10;
 
